@@ -1,5 +1,5 @@
 # SafeBite
-Accessible & Transparent Food Ordering
+##Accessible & Transparent Food Ordering
 
 An accessible and transparent food-ordering MVP designed to make restaurant discovery, food information, nutrition, allergens, customization, pricing, and order tracking easier to understand.
 
@@ -9,7 +9,7 @@ Unlike a conventional food-ordering interface that primarily focuses on browsing
 
 ---
 
-The Problem
+##The Problem
 
 When ordering food online, users may not always have clear information about:
 
@@ -24,7 +24,7 @@ Accessibility barriers can make this information even harder to understand and u
 
 ---
 
-Our Solution
+##Our Solution
 
 Accessible & Transparent Food Ordering brings important food and ordering information into a clear, accessible interface.
 
@@ -41,7 +41,7 @@ The platform helps users:
 
 ---
 
-Key Features
+##Key Features
 
 🍽️ Transparent Restaurant Discovery
 
@@ -72,7 +72,7 @@ This prevents unavailable information from being presented as if it were verifie
 
 ---
 
-🥗 Transparent Nutrition
+##🥗 Transparent Nutrition
 
 Food items can display nutritional information such as:
 
@@ -87,7 +87,7 @@ This allows users to understand the level of certainty behind the information th
 
 ---
 
-⚠️ Transparent Allergen Information
+##⚠️ Transparent Allergen Information
 
 Users can create an allergen profile and receive warnings when a food item or selected customization may conflict with their saved allergens.
 
@@ -122,7 +122,7 @@ The platform presents nutrition information factually and does not make medical 
 
 ---
 
-🍔 Transparent Food Customization
+##🍔 Transparent Food Customization
 
 Users can customize menu items by:
 
@@ -143,7 +143,7 @@ Where applicable, changes can be reflected in:
 
 ---
 
-💰 Transparent Pricing
+##💰 Transparent Pricing
 
 Users can see an itemized breakdown of their order.
 
@@ -161,7 +161,7 @@ This helps users understand why they are paying the final amount instead of seei
 
 ---
 
-🛒 Transparent Checkout
+##🛒 Transparent Checkout
 
 The checkout experience provides a final review before placing the order.
 
@@ -180,7 +180,7 @@ The prototype currently uses a simulated checkout flow.
 
 ---
 
-📦 Transparent Order Tracking
+##📦 Transparent Order Tracking
 
 Transparency continues even after the order is placed.
 
@@ -203,7 +203,7 @@ Future versions can connect this experience to real-time delivery location and t
 
 ---
 
-♿ Accessible & Inclusive Design
+##♿ Accessible & Inclusive Design
 
 Accessibility is integrated throughout the platform rather than being treated as a separate feature.
 
@@ -223,7 +223,7 @@ The goal is to make important food and ordering information easier to perceive a
 
 ---
 
-🔍 Transparency Throughout the Journey
+##🔍 Transparency Throughout the Journey
 
 The platform is built around four questions:
 
@@ -247,7 +247,7 @@ This makes transparency a part of the complete experience rather than a single f
 
 ---
 
-🛠️ Tech Stack
+##🛠️ Tech Stack
 
 - React — Frontend UI
 - Vite — Development and build tooling
@@ -256,7 +256,7 @@ This makes transparency a part of the complete experience rather than a single f
 
 ---
 
-📊 Current Prototype Scope
+##📊 Current Prototype Scope
 
 This project is currently an MVP/prototype using sample restaurant and menu data.
 
@@ -274,7 +274,7 @@ It is not intended to represent a production-ready food-delivery backend.
 
 ---
 
-🚀 Future Enhancements
+##🚀 Future Enhancements
 
 Future versions can extend the prototype with:
 
@@ -294,7 +294,7 @@ Future versions can extend the prototype with:
 
 ---
 
-💻 Getting Started
+##💻 Getting Started
 
 Requirements
 
@@ -315,7 +315,7 @@ Open the local development URL displayed in the terminal.
 
 ---
 
-🎯 Project Goal
+##🎯 Project Goal
 
 Accessible & Transparent Food Ordering aims to make food ordering clearer, more accessible, and more transparent by giving users the information they need before, during, and after placing an order.
 
