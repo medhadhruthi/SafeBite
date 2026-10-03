@@ -131,8 +131,8 @@ export function CartProvider({ children }) {
   // Calculate pricing breakdown with 100% transparency
   const subtotal = cartItems.reduce((acc, ci) => acc + ci.unitPrice * ci.quantity, 0);
   const deliveryFee = selectedRestaurant ? selectedRestaurant.deliveryFee : 0;
-  const serviceFee = subtotal > 0 ? 1.50 : 0;
-  const estimatedTax = subtotal * 0.08; // 8% sales tax
+  const serviceFee = subtotal > 0 ? 5 : 0;
+  const estimatedTax = subtotal * 0.05;
   const grandTotal = subtotal + deliveryFee + serviceFee + estimatedTax;
 
   // Place order & start real-time simulated order tracker

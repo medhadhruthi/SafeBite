@@ -4,6 +4,7 @@ import Stepper from '../common/Stepper';
 import AllergenBadge from './AllergenBadge';
 import { useCart } from '../../context/CartContext';
 import { useAccessibility } from '../../context/AccessibilityContext';
+import { formatINR } from '../../utils/currency';
 import { ShoppingBag, AlertCircle } from 'lucide-react';
 
 export default function CustomizationModal({ isOpen, onClose, item, restaurant, onTriggerAllergenGuard }) {
@@ -50,7 +51,7 @@ export default function CustomizationModal({ isOpen, onClose, item, restaurant, 
       if (group.max === 1) {
         // Single selection (Radio behavior)
         const updated = [option];
-        announce(`Selected ${option.label}. Price delta: +$${option.priceDelta.toFixed(2)}.`);
+        announce(`Selected ${option.label}. Price delta: +${formatINR(option.priceDelta)}.`);
         return { ...prev, [group.id]: updated };
       } else {
         // Multi selection (Checkbox behavior)
@@ -61,7 +62,7 @@ export default function CustomizationModal({ isOpen, onClose, item, restaurant, 
         announce(
           exists
             ? `Deselected ${option.label}`
-            : `Selected ${option.label}. Price delta: +$${option.priceDelta.toFixed(2)}.`
+            : `Selected ${option.label}. Price delta: +${formatINR(option.priceDelta)}.`
         );
         return { ...prev, [group.id]: updated };
       }
@@ -98,11 +99,11 @@ export default function CustomizationModal({ isOpen, onClose, item, restaurant, 
               Live Total Price:
             </span>
             <span className="text-2xl font-black text-blue-950 dark:text-white">
-              ${totalPrice.toFixed(2)}
+              {formatINR(totalPrice)}
             </span>
           </div>
           <span className="text-xs font-semibold text-blue-900 dark:text-blue-200">
-            (${unitPrice.toFixed(2)} each × {quantity})
+            ({formatINR(unitPrice)} each × {quantity})
           </span>
         </div>
 
@@ -170,7 +171,7 @@ export default function CustomizationModal({ isOpen, onClose, item, restaurant, 
                         </div>
 
                         <span className="text-base font-extrabold text-slate-900 dark:text-white">
-                          {opt.priceDelta > 0 ? `+$${opt.priceDelta.toFixed(2)}` : 'Free'}
+                          {opt.priceDelta > 0 ? `+${formatINR(opt.priceDelta)}` : 'Free'}
                         </span>
                       </label>
                     );
@@ -208,7 +209,7 @@ export default function CustomizationModal({ isOpen, onClose, item, restaurant, 
             className="min-h-[52px] px-8 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-lg flex items-center gap-2 cursor-pointer focus:ring-4 focus:ring-yellow-400 shadow-lg"
           >
             <ShoppingBag className="w-5 h-5" aria-hidden="true" />
-            <span>Add {quantity} to Cart (${totalPrice.toFixed(2)})</span>
+            <span>Add {quantity} to Cart ({formatINR(totalPrice)})</span>
           </button>
         </div>
       </div>

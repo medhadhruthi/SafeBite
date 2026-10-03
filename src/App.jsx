@@ -21,7 +21,7 @@ import { useUserProfile } from './context/UserProfileContext';
 
 export default function App() {
   const { addToCart, isCartOpen, setIsCartOpen, checkItemAllergenConflicts } = useCart();
-  const { savedAllergens, savedDiets } = useUserProfile();
+  const { savedDiets } = useUserProfile();
 
   // Navigation & View state
   const [activeTab, setActiveTab] = useState('home'); // 'home', 'orders'
@@ -100,7 +100,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 pb-24 md:pb-12">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(16,185,129,0.08),transparent_32%),linear-gradient(180deg,#f8fafc_0%,#f4f7fb_100%)] text-slate-900">
       {/* WCAG Skip-to-content Link */}
       <SkipLink />
 
@@ -122,13 +122,14 @@ export default function App() {
       />
 
       {/* Main Content Body */}
-      <main id="main-content" tabIndex="-1" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 focus:outline-none">
+      <main id="main-content" tabIndex="-1" className="mx-auto flex w-full max-w-7xl flex-1 px-4 py-6 focus:outline-none sm:px-6">
         {activeTab === 'home' && !selectedRestaurant && (
           <RestaurantList
             restaurants={filteredRestaurants}
             onSelectRestaurant={setSelectedRestaurant}
             onOpenFilter={() => setIsFilterOpen(true)}
             activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
           />
         )}
 

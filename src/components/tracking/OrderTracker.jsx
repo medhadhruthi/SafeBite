@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
+import { formatINR } from '../../utils/currency';
 import { Clock, CheckCircle2, MapPin, FastForward, PhoneCall, ShieldCheck, Utensils } from 'lucide-react';
 
 export default function OrderTracker() {
@@ -137,7 +138,7 @@ export default function OrderTracker() {
         <div className="p-4 rounded-xl bg-slate-100 dark:bg-slate-800 space-y-2 text-sm text-slate-800 dark:text-slate-200">
           <p>📍 <strong>Address:</strong> {activeOrder.deliveryDetails.address}</p>
           <p>♿ <strong>Driver Note:</strong> {activeOrder.deliveryDetails.deliveryNotes}</p>
-          <p>💳 <strong>Paid Total:</strong> ${(activeOrder.grandTotal + activeOrder.deliveryDetails.tipAmount).toFixed(2)}</p>
+          <p>💳 <strong>Paid Total:</strong> {formatINR(activeOrder.grandTotal + activeOrder.deliveryDetails.tipAmount)}</p>
         </div>
       </div>
     </div>

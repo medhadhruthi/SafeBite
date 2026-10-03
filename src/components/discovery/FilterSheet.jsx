@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Modal from '../common/Modal';
-import { ALLERGENS, DIETARY_TAGS } from '../../data/allergenData';
+import { ALLERGENS, NUTRITION_TAGS, DIETARY_TAGS } from '../../data/allergenData';
 import { useUserProfile } from '../../context/UserProfileContext';
 import { useAccessibility } from '../../context/AccessibilityContext';
-import { Filter, Mic, Check, RotateCcw } from 'lucide-react';
+import { Filter, Mic, Check, RotateCcw, Sparkles } from 'lucide-react';
 
 export default function FilterSheet({ isOpen, onClose, activeFilters, setActiveFilters, totalResultsCount }) {
   const { savedAllergens, savedDiets, toggleAllergen, toggleDiet } = useUserProfile();
@@ -22,126 +22,136 @@ export default function FilterSheet({ isOpen, onClose, activeFilters, setActiveF
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Filter Restaurants & Menus" maxWidth="max-w-3xl">
+    <Modal isOpen={isOpen} onClose={onClose} title="Filter restaurants & menus" maxWidth="max-w-4xl">
       <div className="space-y-6">
-        {/* Search Bar & Voice Search */}
+        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 rounded-xl bg-white p-2 text-emerald-600 shadow-sm">
+              <Filter className="h-5 w-5" aria-hidden="true" />
+            </div>
+            <div className="text-sm text-emerald-900">
+              <p className="font-bold">Synced with your Dietary Guard Profile</p>
+              <p className="mt-1 text-emerald-800/80">Changes made here automatically update your profile allergen filters.</p>
+            </div>
+          </div>
+        </div>
+
         <div>
-          <label htmlFor="search-input" className="block text-base font-bold text-slate-900 dark:text-white mb-2">
-            Search Food or Keywords
+          <label htmlFor="search-input" className="mb-2 block text-sm font-bold uppercase tracking-[0.14em] text-slate-500">
+            Search food or keywords
           </label>
-          <div className="flex gap-2">
+          <div className="flex flex-col gap-3 sm:flex-row">
             <input
               id="search-input"
               type="text"
               value={activeFilters.search}
               onChange={(e) => setActiveFilters((prev) => ({ ...prev, search: e.target.value }))}
-              placeholder="e.g. Avocado bowl, GF Panini, Halal..."
-              className="flex-1 min-h-[48px] px-4 rounded-xl border-2 border-slate-400 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-base focus:ring-4 focus:ring-blue-600"
+              placeholder="e.g. Avocado bowl, GF Panini, high protein..."
+              className="h-12 flex-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 text-base text-slate-900 placeholder:text-slate-400 focus:border-emerald-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-emerald-100"
             />
             <button
               type="button"
               onClick={handleVoiceSearch}
-              className={`min-h-[48px] px-4 rounded-xl border-2 font-bold flex items-center gap-2 cursor-pointer transition-colors focus:ring-4 focus:ring-yellow-400 ${
+              className={`inline-flex h-12 items-center justify-center gap-2 rounded-2xl px-4 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-amber-200 ${
                 isListening
-                  ? 'bg-red-600 text-white border-red-700 animate-pulse'
-                  : 'bg-slate-800 text-slate-100 border-slate-700 hover:bg-slate-700'
+                  ? 'bg-red-500 text-white shadow-lg shadow-red-500/20'
+                  : 'border border-slate-200 bg-slate-900 text-white hover:bg-slate-800'
               }`}
               aria-label="Simulate voice search"
             >
-              <Mic className="w-5 h-5 text-yellow-400" aria-hidden="true" />
-              <span className="hidden sm:inline">{isListening ? 'Listening...' : 'Voice Search'}</span>
+              <Mic className="h-4 w-4" aria-hidden="true" />
+              <span>{isListening ? 'Listening...' : 'Voice Search'}</span>
             </button>
           </div>
         </div>
 
-        {/* Saved Profile Safety Quick Sync Notice */}
-        <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-950/60 border-2 border-blue-400 flex items-start gap-3">
-          <Filter className="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-          <div className="text-sm">
-            <p className="font-bold text-blue-950 dark:text-blue-100">
-              Synced with your Dietary Guard Profile
-            </p>
-            <p className="text-blue-900 dark:text-blue-200 mt-0.5">
-              Changes made here automatically update your profile allergen filters.
-            </p>
-          </div>
-        </div>
-
-        {/* Dietary Preferences Section */}
-        <fieldset className="border-2 border-slate-300 dark:border-slate-700 rounded-xl p-4">
-          <legend className="px-2 font-black text-base text-slate-900 dark:text-white">
-            Dietary Preferences
-          </legend>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
-            {DIETARY_TAGS.map((tag) => {
+        <fieldset className="rounded-[24px] border border-slate-200 bg-slate-50 p-4">
+          <legend className="px-2 text-sm font-bold uppercase tracking-[0.14em] text-slate-600">Nutrition-first filters</legend>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {NUTRITION_TAGS.map((tag) => {
               const isChecked = savedDiets.includes(tag.id);
               return (
-                <label
+                <button
                   key={tag.id}
-                  className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors ${
+                  type="button"
+                  aria-pressed={isChecked}
+                  onClick={() => toggleDiet(tag.id, tag.name)}
+                  className={`flex items-start gap-3 rounded-2xl border p-3 text-left transition-all ${
                     isChecked
-                      ? 'bg-emerald-50 dark:bg-emerald-950 border-emerald-500 font-bold'
-                      : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-800 hover:border-slate-400'
+                      ? 'border-emerald-300 bg-emerald-50 shadow-sm'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-100'
                   }`}
                 >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => toggleDiet(tag.id, tag.name)}
-                    className="w-6 h-6 rounded border-slate-400 text-emerald-600 focus:ring-4 focus:ring-blue-600 mt-0.5"
-                  />
-                  <div>
-                    <span className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <span>{tag.icon}</span>
-                      <span>{tag.name}</span>
-                    </span>
-                    <span className="text-xs text-slate-600 dark:text-slate-400 block mt-0.5">
-                      {tag.description}
-                    </span>
-                  </div>
-                </label>
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg">{tag.icon}</span>
+                  <span className="flex-1">
+                    <span className="block text-base font-bold text-slate-900">{tag.name}</span>
+                    <span className="mt-1 block text-xs text-slate-600">{tag.description}</span>
+                  </span>
+                  {isChecked && <Check className="mt-1 h-4 w-4 text-emerald-600" aria-hidden="true" />}
+                </button>
               );
             })}
           </div>
         </fieldset>
 
-        {/* Allergen Exclusion Section */}
-        <fieldset className="border-2 border-slate-300 dark:border-slate-700 rounded-xl p-4">
-          <legend className="px-2 font-black text-base text-slate-900 dark:text-white">
-            Strict Allergen Exclusions (Hide / Flag Unsafe Dishes)
-          </legend>
-          <div className="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 gap-3 mt-2">
+        <fieldset className="rounded-[24px] border border-slate-200 bg-slate-50 p-4">
+          <legend className="px-2 text-sm font-bold uppercase tracking-[0.14em] text-slate-600">Traditional dietary labels</legend>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            {DIETARY_TAGS.filter((tag) => !NUTRITION_TAGS.some((nutritionTag) => nutritionTag.id === tag.id)).map((tag) => {
+              const isChecked = savedDiets.includes(tag.id);
+              return (
+                <button
+                  key={tag.id}
+                  type="button"
+                  aria-pressed={isChecked}
+                  onClick={() => toggleDiet(tag.id, tag.name)}
+                  className={`flex items-start gap-3 rounded-2xl border p-3 text-left transition-all ${
+                    isChecked
+                      ? 'border-emerald-300 bg-emerald-50 shadow-sm'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-100'
+                  }`}
+                >
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg">{tag.icon}</span>
+                  <span className="flex-1">
+                    <span className="block text-base font-bold text-slate-900">{tag.name}</span>
+                    <span className="mt-1 block text-xs text-slate-600">{tag.description}</span>
+                  </span>
+                  {isChecked && <Check className="mt-1 h-4 w-4 text-emerald-600" aria-hidden="true" />}
+                </button>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        <fieldset className="rounded-[24px] border border-slate-200 bg-slate-50 p-4">
+          <legend className="px-2 text-sm font-bold uppercase tracking-[0.14em] text-slate-600">Allergen exclusions</legend>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {ALLERGENS.map((alg) => {
               const isChecked = savedAllergens.includes(alg.id);
               return (
-                <label
+                <button
                   key={alg.id}
-                  className={`flex items-center gap-3 p-3 rounded-lg border-2 cursor-pointer transition-colors ${
+                  type="button"
+                  aria-pressed={isChecked}
+                  onClick={() => toggleAllergen(alg.id, alg.name)}
+                  className={`flex items-center gap-3 rounded-2xl border p-3 text-left transition-all ${
                     isChecked
-                      ? 'bg-red-50 dark:bg-red-950 border-red-500 font-bold'
-                      : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-800 hover:border-slate-400'
+                      ? 'border-rose-300 bg-rose-50 shadow-sm'
+                      : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-100'
                   }`}
                 >
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    onChange={() => toggleAllergen(alg.id, alg.name)}
-                    className="w-6 h-6 rounded border-slate-400 text-red-600 focus:ring-4 focus:ring-blue-600"
-                  />
-                  <span className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                    <span>{alg.icon}</span>
-                    <span>Exclude {alg.name}</span>
-                  </span>
-                </label>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-base">{alg.icon}</span>
+                  <span className="text-sm font-semibold text-slate-900">{alg.name}</span>
+                  {isChecked && <Check className="ml-auto h-4 w-4 text-rose-600" aria-hidden="true" />}
+                </button>
               );
             })}
           </div>
         </fieldset>
 
-        {/* Results Live Count & Action Footer */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t-2 border-slate-200 dark:border-slate-800">
-          <div className="text-base font-bold text-slate-900 dark:text-white" aria-live="polite">
-            Showing <span className="text-blue-600 dark:text-blue-400 text-lg font-black">{totalResultsCount}</span> restaurants matching your criteria
+        <div className="flex flex-col gap-4 border-t border-slate-200 pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="text-base font-semibold text-slate-700" aria-live="polite">
+            Showing <span className="text-lg font-black text-slate-900">{totalResultsCount}</span> restaurants matching your criteria
           </div>
 
           <div className="flex items-center gap-3">
@@ -151,10 +161,10 @@ export default function FilterSheet({ isOpen, onClose, activeFilters, setActiveF
                 setActiveFilters({ search: '' });
                 announce('Filters reset');
               }}
-              className="min-h-[48px] px-4 rounded-xl border-2 border-slate-400 dark:border-slate-600 text-slate-800 dark:text-slate-200 font-bold hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-2 cursor-pointer focus:ring-4 focus:ring-blue-600"
+              className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition-colors hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-200"
             >
-              <RotateCcw className="w-5 h-5" aria-hidden="true" />
-              <span>Reset</span>
+              <RotateCcw className="h-4 w-4" aria-hidden="true" />
+              Reset
             </button>
 
             <button
@@ -163,10 +173,10 @@ export default function FilterSheet({ isOpen, onClose, activeFilters, setActiveF
                 announce(`Filters applied. Showing ${totalResultsCount} restaurants.`);
                 onClose();
               }}
-              className="min-h-[48px] px-6 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-black text-base flex items-center gap-2 cursor-pointer focus:ring-4 focus:ring-yellow-400"
+              className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-200"
             >
-              <Check className="w-5 h-5" aria-hidden="true" />
-              <span>Apply Filters</span>
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              Apply filters
             </button>
           </div>
         </div>

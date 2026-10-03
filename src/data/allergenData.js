@@ -10,14 +10,27 @@ export const ALLERGENS = [
   { id: 'sesame', name: 'Sesame', icon: '🫐', category: 'Seed', severityNote: 'Sesame seeds, tahini, or sesame oil.' },
 ];
 
+export const NUTRITION_TAGS = [
+  { id: 'high-protein', name: 'High Protein', icon: '💪', description: '20g+ protein per serving for strength and satiety' },
+  { id: 'calorie-conscious', name: 'Calorie Conscious', icon: '🔥', description: 'Lightweight options designed to support mindful intake' },
+  { id: 'lower-carb', name: 'Lower Carb', icon: '🍚', description: 'Balanced meals with a lower carbohydrate profile' },
+  { id: 'vegetarian', name: 'Vegetarian', icon: '🥗', description: 'No meat, poultry, or seafood' },
+  { id: 'vegan', name: 'Vegan', icon: '🌱', description: '100% plant-based, no animal byproducts' },
+  { id: 'dairy-free', name: 'Dairy-Free', icon: '🥛', description: 'Contains no milk products or derivatives' },
+  { id: 'gluten-free', name: 'Gluten-Free', icon: '🌾', description: 'Made without wheat, barley, rye, or oats' },
+  { id: 'less-spicy', name: 'Less Spicy', icon: '🌶️', description: 'Milder flavor profile with lower heat' },
+];
+
 export const DIETARY_TAGS = [
   { id: 'veg', name: 'Vegetarian', icon: '🥬', description: 'No meat, poultry, or seafood' },
   { id: 'vegan', name: 'Vegan', icon: '🌱', description: '100% plant-based, no animal byproducts' },
-  { id: 'halal', name: 'Halal Certified', icon: '🌙', description: 'Prepared according to Islamic dietary standards' },
-  { id: 'jain', name: 'Jain Friendly', icon: '☸️', description: 'No root vegetables, no onion, garlic, or meat' },
   { id: 'gf', name: 'Gluten-Free', icon: '🌾❌', description: 'Made without wheat, barley, rye, or oats' },
   { id: 'df', name: 'Dairy-Free', icon: '🥛❌', description: 'Contains no milk products or derivatives' },
   { id: 'keto', name: 'Low Carb / Keto', icon: '🥑', description: 'High healthy fat, low sugar and carbohydrates' },
+  { id: 'high-protein', name: 'High Protein', icon: '💪', description: 'Protein-forward meal for strength and satiety' },
+  { id: 'calorie-conscious', name: 'Calorie Conscious', icon: '🔥', description: 'Lower calorie option for balanced choices' },
+  { id: 'lower-carb', name: 'Lower Carb', icon: '🍚', description: 'Reduced carb profile with lighter energy load' },
+  { id: 'less-spicy', name: 'Less Spicy', icon: '🌶️', description: 'Milder flavor profile with lower heat' },
 ];
 
 export const ALLERGEN_STATUS_TYPES = {

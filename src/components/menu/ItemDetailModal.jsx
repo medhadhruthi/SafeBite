@@ -3,6 +3,7 @@ import Modal from '../common/Modal';
 import AllergenBadge from './AllergenBadge';
 import { Clock, ShieldAlert, CheckCircle2, FileText, Info } from 'lucide-react';
 import { useUserProfile } from '../../context/UserProfileContext';
+import { formatINR } from '../../utils/currency';
 
 export default function ItemDetailModal({ isOpen, onClose, item, onProceedToCustomize }) {
   const { savedAllergens } = useUserProfile();
@@ -37,7 +38,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onProceedToCust
             </p>
           </div>
           <span className="text-2xl sm:text-3xl font-black text-emerald-700 dark:text-emerald-400">
-            ${item.price.toFixed(2)}
+            {formatINR(item.price)}
           </span>
         </div>
 
@@ -141,7 +142,7 @@ export default function ItemDetailModal({ isOpen, onClose, item, onProceedToCust
             }}
             className="min-h-[48px] px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-base focus:ring-4 focus:ring-yellow-400 cursor-pointer"
           >
-            Customize & Order (${item.price.toFixed(2)})
+            Customize & Order ({formatINR(item.price)})
           </button>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import MenuItemRow from './MenuItemRow';
 import { ArrowLeft, Clock, Truck, ShieldCheck, Accessibility, Star, Info } from 'lucide-react';
 import Badge from '../common/Badge';
+import { formatINR } from '../../utils/currency';
 
 export default function RestaurantMenuView({ restaurant, onBack, onOpenDetail, onQuickAdd }) {
   const [activeCategory, setActiveCategory] = useState(
@@ -37,6 +38,34 @@ export default function RestaurantMenuView({ restaurant, onBack, onOpenDetail, o
             <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mt-1">
               {restaurant.cuisine.join(' • ')} • {restaurant.distance} away
             </p>
+
+            <div className="mt-3 flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 w-fit">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-[10px] font-black text-white">
+                {(restaurant.nutritionStatus === 'verified' && '✓') || (restaurant.nutritionStatus === 'estimated' && '~') || '—'}
+              </span>
+              <span className="font-semibold text-slate-800">
+                {restaurant.nutritionStatus === 'verified' && 'Nutrition: Verified'}
+                {restaurant.nutritionStatus === 'estimated' && 'Nutrition: Estimated'}
+                {restaurant.nutritionStatus === 'unavailable' && 'Nutrition: Unavailable'}
+              </span>
+              <Info
+                className="h-4 w-4 text-slate-500"
+                aria-label={
+                  restaurant.nutritionStatus === 'estimated'
+                    ? 'Nutrition values are estimates based on listed ingredients and portion size.'
+                    : restaurant.nutritionStatus === 'verified'
+                    ? 'Nutrition information provided and verified for this restaurant.'
+                    : 'Nutrition information is not available for this restaurant.'
+                }
+                title={
+                  restaurant.nutritionStatus === 'estimated'
+                    ? 'Nutrition values are estimates based on listed ingredients and portion size.'
+                    : restaurant.nutritionStatus === 'verified'
+                    ? 'Nutrition information provided and verified for this restaurant.'
+                    : 'Nutrition information is not available for this restaurant.'
+                }
+              />
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-2">
@@ -46,7 +75,7 @@ export default function RestaurantMenuView({ restaurant, onBack, onOpenDetail, o
             </span>
             <span className="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-xs flex items-center gap-1.5 border border-slate-300 dark:border-slate-700">
               <Truck className="w-4 h-4 text-emerald-500" aria-hidden="true" />
-              <span>Fee: ${restaurant.deliveryFee.toFixed(2)}</span>
+              <span>Fee: {formatINR(restaurant.deliveryFee)}</span>
             </span>
           </div>
         </div>
@@ -124,6 +153,7 @@ export default function RestaurantMenuView({ restaurant, onBack, onOpenDetail, o
                     item={item}
                     onOpenDetail={onOpenDetail}
                     onQuickAdd={onQuickAdd}
+                    nutritionStatus={restaurant.nutritionStatus || 'verified'}
                   />
                 ))}
               </div>

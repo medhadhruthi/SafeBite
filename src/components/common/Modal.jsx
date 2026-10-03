@@ -14,7 +14,6 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
-      // Focus first focusable element or modal container
       setTimeout(() => {
         if (modalRef.current) {
           const focusable = modalRef.current.querySelectorAll(
@@ -40,7 +39,7 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
   return (
     <div
       tabIndex="-1"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/70 p-4 backdrop-blur-sm"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -50,24 +49,22 @@ export default function Modal({ isOpen, onClose, title, children, maxWidth = 'ma
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
-        className={`w-full ${maxWidth} bg-white dark:bg-slate-900 border-2 border-slate-700 rounded-2xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col focus:outline-none`}
+        className={`my-8 flex max-h-[90vh] w-full ${maxWidth} flex-col overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_40px_90px_-30px_rgba(15,23,42,0.5)] focus:outline-none`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
-          <h2 id="modal-title" className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-5 py-4 sm:px-6">
+          <h2 id="modal-title" className="text-xl font-black tracking-[-0.05em] text-slate-900 sm:text-2xl">
             {title}
           </h2>
           <button
             onClick={onClose}
             aria-label="Close dialog modal"
-            className="w-12 h-12 flex items-center justify-center rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-100 font-bold focus:ring-4 focus:ring-blue-500 cursor-pointer transition-colors"
+            className="flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-200 text-slate-800 transition-colors hover:bg-slate-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-slate-200"
           >
-            <X className="w-6 h-6" aria-hidden="true" />
+            <X className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="p-6 overflow-y-auto flex-1">{children}</div>
+        <div className="flex-1 overflow-y-auto p-5 sm:p-6">{children}</div>
       </div>
     </div>
   );

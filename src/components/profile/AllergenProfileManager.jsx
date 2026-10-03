@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from '../common/Modal';
-import { ALLERGENS, DIETARY_TAGS } from '../../data/allergenData';
+import { ALLERGENS, NUTRITION_TAGS, DIETARY_TAGS } from '../../data/allergenData';
 import { useUserProfile } from '../../context/UserProfileContext';
 import { useAccessibility } from '../../context/AccessibilityContext';
 import { ShieldCheck, Eye, Type, Zap, RotateCcw, Save } from 'lucide-react';
@@ -60,13 +60,50 @@ export default function AllergenProfileManager({ isOpen, onClose }) {
           </div>
         </fieldset>
 
-        {/* Dietary Preferences */}
+        {/* Nutrition-first Preferences */}
         <fieldset className="border-2 border-slate-300 dark:border-slate-700 rounded-xl p-4 space-y-3">
           <legend className="px-2 font-black text-base text-slate-900 dark:text-white">
-            Dietary Preferences ({savedDiets.length} Selected)
+            Nutrition-first Filters ({savedDiets.length} Selected)
           </legend>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {DIETARY_TAGS.map((tag) => {
+            {NUTRITION_TAGS.map((tag) => {
+              const isChecked = savedDiets.includes(tag.id);
+              return (
+                <label
+                  key={tag.id}
+                  className={`flex items-start gap-3 p-3 rounded-xl border-2 cursor-pointer transition-colors ${
+                    isChecked
+                      ? 'bg-emerald-50 dark:bg-emerald-950 border-emerald-500 font-bold'
+                      : 'bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-800'
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => toggleDiet(tag.id, tag.name)}
+                    className="w-6 h-6 rounded border-slate-400 text-emerald-600 focus:ring-4 focus:ring-blue-600 mt-0.5"
+                  />
+                  <div>
+                    <span className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                      <span>{tag.icon}</span>
+                      <span>{tag.name}</span>
+                    </span>
+                    <span className="text-xs text-slate-600 dark:text-slate-400 block mt-0.5">
+                      {tag.description}
+                    </span>
+                  </div>
+                </label>
+              );
+            })}
+          </div>
+        </fieldset>
+
+        <fieldset className="border-2 border-slate-300 dark:border-slate-700 rounded-xl p-4 space-y-3">
+          <legend className="px-2 font-black text-base text-slate-900 dark:text-white">
+            Traditional Dietary Labels
+          </legend>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {DIETARY_TAGS.filter((tag) => !NUTRITION_TAGS.some((nutritionTag) => nutritionTag.id === tag.id)).map((tag) => {
               const isChecked = savedDiets.includes(tag.id);
               return (
                 <label

@@ -6,13 +6,14 @@ export const RESTAURANTS = [
     rating: 4.9,
     reviewCount: 342,
     prepTimeMin: '15 - 25 min',
-    deliveryFee: 1.99,
-    minOrder: 12.00,
-    distance: '0.8 miles',
+    deliveryFee: 25,
+    minOrder: 99,
+    distance: '1.3 km',
     image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
     altText: 'A vibrant bowl filled with fresh quinoa, avocado slices, roasted chickpeas, kale, and cherry tomatoes.',
     accessibilityNotes: 'Step-free entrance, spacious seating layout, digital QR accessibility menu, low ambient music.',
-    dietBadges: ['vegan', 'veg', 'gf', 'df', 'halal'],
+    dietBadges: ['vegan', 'veg', 'vegetarian', 'gf', 'gluten-free', 'df', 'dairy-free', 'high-protein', 'calorie-conscious', 'lower-carb', 'less-spicy'],
+    nutritionStatus: 'verified',
     allergenDataSource: 'Direct Kitchen Verification (Updated 2 days ago by Head Chef)',
     categories: [
       {
@@ -24,7 +25,7 @@ export const RESTAURANTS = [
             id: 'item-101',
             name: 'Avocado & Ancient Grain Harvest Bowl',
             description: 'Organic warm quinoa, roasted sweet potatoes, fresh avocado, massaged kale, wild mushrooms, and toasted pumpkin seeds with maple tahini dressing.',
-            price: 14.50,
+            price: 279,
             prepTimeMin: 15,
             image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80',
             altText: 'Bowl of warm quinoa topped with fan-sliced avocado, orange sweet potato cubes, seeds, and dark leafy greens.',
@@ -44,7 +45,7 @@ export const RESTAURANTS = [
               { id: 'gluten', status: 'FREE_FROM', note: '100% Gluten-free grains used.' },
               { id: 'dairy', status: 'FREE_FROM', note: '100% Dairy-free facility.' }
             ],
-            dietTags: ['vegan', 'veg', 'gf', 'df', 'halal'],
+            dietTags: ['vegan', 'veg', 'gf', 'df'],
             nutrition: { calories: 520, protein: '14g', carbs: '62g', fat: '24g', sodium: '410mg' },
             customizationGroups: [
               {
@@ -54,8 +55,8 @@ export const RESTAURANTS = [
                 min: 0,
                 max: 1,
                 options: [
-                  { id: 'opt-tofu', label: 'Organic Baked Tofu', priceDelta: 3.00, allergens: [{ id: 'soy', status: 'CONTAINS' }] },
-                  { id: 'opt-falafel', label: 'Crispy Baked Chickpea Falafel (3pcs)', priceDelta: 3.50, allergens: [{ id: 'sesame', status: 'MAY_CONTAIN' }] }
+                  { id: 'opt-tofu', label: 'Organic Baked Tofu', priceDelta: 39, allergens: [{ id: 'soy', status: 'CONTAINS' }] },
+                  { id: 'opt-falafel', label: 'Crispy Baked Chickpea Falafel (3pcs)', priceDelta: 59, allergens: [{ id: 'sesame', status: 'MAY_CONTAIN' }] }
                 ]
               },
               {
@@ -76,7 +77,7 @@ export const RESTAURANTS = [
             id: 'item-102',
             name: 'Thai Peanut Power Bowl',
             description: 'Purple rice, shredded purple cabbage, edamame, cucumber ribbons, crushed roasted peanuts, and spicy house peanut sauce.',
-            price: 13.90,
+            price: 329,
             prepTimeMin: 15,
             image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80',
             altText: 'Colorful bowl with purple cabbage, green edamame beans, cucumber slices, and golden peanut dressing.',
@@ -106,7 +107,7 @@ export const RESTAURANTS = [
                 options: [
                   { id: 'opt-mild', label: 'Mild (No chili)', priceDelta: 0, allergens: [] },
                   { id: 'opt-medium', label: 'Medium (Standard)', priceDelta: 0, allergens: [] },
-                  { id: 'opt-spicy', label: 'Extra Spicy Chili Oil', priceDelta: 0.50, allergens: [] }
+                  { id: 'opt-spicy', label: 'Extra Spicy Chili Oil', priceDelta: 20, allergens: [] }
                 ]
               }
             ],
@@ -123,13 +124,14 @@ export const RESTAURANTS = [
     rating: 4.8,
     reviewCount: 512,
     prepTimeMin: '10 - 20 min',
-    deliveryFee: 2.49,
-    minOrder: 10.00,
-    distance: '1.2 miles',
+    deliveryFee: 29,
+    minOrder: 99,
+    distance: '1.9 km',
     image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
     altText: 'Display of freshly baked golden loaves of bread, muffins, and pastries on wooden wooden counter.',
     accessibilityNotes: 'Dedicated allergen-free kitchen lines, Braille menus, large print menus, staff trained in allergen isolation.',
-    dietBadges: ['gf', 'veg', 'df', 'jain'],
+    dietBadges: ['gf', 'gluten-free', 'veg', 'vegetarian', 'df', 'dairy-free', 'high-protein', 'calorie-conscious', 'lower-carb'],
+    nutritionStatus: 'estimated',
     allergenDataSource: 'Independent Lab Certified 100% Gluten-Free Facility',
     categories: [
       {
@@ -141,7 +143,7 @@ export const RESTAURANTS = [
             id: 'item-201',
             name: 'Pesto Avocado Pressed Panini',
             description: 'Artisanal gluten-free sourdough loaf filled with nut-free basil pesto, fresh heirloom tomatoes, ripe avocado, and melted dairy-free mozzarella.',
-            price: 12.00,
+            price: 229,
             prepTimeMin: 12,
             image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80',
             altText: 'Crispy toasted golden sandwich pressed on grill with green pesto and melted vegan cheese oozing out.',
@@ -158,7 +160,7 @@ export const RESTAURANTS = [
               { id: 'treenuts', status: 'FREE_FROM', note: 'Pesto made with sunflower seeds, strictly nut-free.' },
               { id: 'peanuts', status: 'FREE_FROM', note: 'No peanuts handled in bakery premises.' }
             ],
-            dietTags: ['vegan', 'veg', 'gf', 'df', 'halal', 'jain'],
+            dietTags: ['vegan', 'veg', 'gf', 'df'],
             nutrition: { calories: 440, protein: '9g', carbs: '52g', fat: '22g', sodium: '480mg' },
             customizationGroups: [
               {
@@ -182,17 +184,18 @@ export const RESTAURANTS = [
   {
     id: 'rest-3',
     name: 'Saffron & Spice Authentic Kitchen',
-    cuisine: ['Indian', 'Halal', 'Curries', 'Vegan & Veg'],
+    cuisine: ['Indian', 'Curries', 'Vegan & Veg'],
     rating: 4.7,
     reviewCount: 289,
     prepTimeMin: '20 - 35 min',
-    deliveryFee: 2.99,
-    minOrder: 15.00,
-    distance: '2.1 miles',
+    deliveryFee: 35,
+    minOrder: 129,
+    distance: '3.4 km',
     image: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=80',
     altText: 'Traditional copper bowls containing rich aromatic red and yellow curries served with basmati rice.',
     accessibilityNotes: 'Clear verbal order confirmation, physical menus with high contrast large print, ramp access.',
-    dietBadges: ['halal', 'veg', 'vegan', 'jain'],
+    dietBadges: ['veg', 'vegetarian', 'vegan', 'gf', 'gluten-free', 'df', 'dairy-free', 'high-protein', 'calorie-conscious', 'lower-carb', 'less-spicy'],
+    nutritionStatus: 'unavailable',
     allergenDataSource: 'Kitchen Allergen Protocol Verified Sep 2026',
     categories: [
       {
@@ -202,14 +205,14 @@ export const RESTAURANTS = [
         items: [
           {
             id: 'item-301',
-            name: 'Creamy Butter Chicken (Halal)',
+            name: 'Creamy Butter Chicken',
             description: 'Tender free-range chicken simmered in a velvet tomato, butter, and cashew cream sauce infused with roasted fenugreek.',
-            price: 16.95,
+            price: 279,
             prepTimeMin: 25,
             image: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=800&q=80',
             altText: 'Rich orange-red curry dish garnished with swirl of cream and fresh cilantro leaves.',
             ingredients: [
-              'Halal Certified Free-Range Chicken Breast',
+              'Free-Range Chicken Breast',
               'Ripe Tomatoes & Tomato Paste',
               'Grass-Fed Butter (Dairy)',
               'Heavy Cream (Dairy)',
@@ -222,8 +225,8 @@ export const RESTAURANTS = [
               { id: 'treenuts', status: 'CONTAINS', note: 'Sauce thickened with cashew nut paste.' },
               { id: 'gluten', status: 'MAY_CONTAIN', note: 'Curry is GF; served in kitchen that bakes Naan bread (wheat).' }
             ],
-            dietTags: ['halal'],
-            nutrition: { calories: 640, protein: '38g', carbs: '18g', fat: '46g', sodium: '680mg' },
+            dietTags: [],
+            nutrition: null,
             customizationGroups: [
               {
                 id: 'grp-rice',
@@ -233,7 +236,7 @@ export const RESTAURANTS = [
                 max: 1,
                 options: [
                   { id: 'opt-basmati', label: 'Steamed Cumin Basmati Rice (GF)', priceDelta: 0, allergens: [] },
-                  { id: 'opt-naan', label: 'Garlic Butter Naan Bread', priceDelta: 2.50, allergens: [{ id: 'gluten', status: 'CONTAINS' }, { id: 'dairy', status: 'CONTAINS' }] }
+                  { id: 'opt-naan', label: 'Garlic Butter Naan Bread', priceDelta: 39, allergens: [{ id: 'gluten', status: 'CONTAINS' }, { id: 'dairy', status: 'CONTAINS' }] }
                 ]
               }
             ],
@@ -241,9 +244,9 @@ export const RESTAURANTS = [
           },
           {
             id: 'item-302',
-            name: 'Yellow Tadka Dal (Jain Option Available)',
+            name: 'Yellow Tadka Dal',
             description: 'Yellow split lentils tempered with cumin seeds, turmeric, fresh tomatoes, and green chilies. Vegan & Gluten-free.',
-            price: 12.50,
+            price: 179,
             prepTimeMin: 20,
             image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80',
             altText: 'Golden yellow lentil dal in a stainless steel bowl topped with fried cumin seeds and fresh coriander.',
@@ -260,20 +263,9 @@ export const RESTAURANTS = [
               { id: 'peanuts', status: 'FREE_FROM', note: 'No peanuts processed in dal cookware.' },
               { id: 'treenuts', status: 'FREE_FROM', note: 'No tree nuts in dal preparation.' }
             ],
-            dietTags: ['vegan', 'veg', 'gf', 'df', 'halal', 'jain'],
-            nutrition: { calories: 380, protein: '16g', carbs: '54g', fat: '10g', sodium: '420mg' },
-            customizationGroups: [
-              {
-                id: 'grp-jain',
-                label: 'Jain Preparation (No Onion / No Garlic)',
-                required: false,
-                min: 0,
-                max: 1,
-                options: [
-                  { id: 'opt-jain-yes', label: 'Make Jain Compliant (No Garlic)', priceDelta: 0, allergens: [] }
-                ]
-              }
-            ],
+            dietTags: ['vegan', 'veg', 'gf', 'df'],
+            nutrition: null,
+            customizationGroups: [],
             availability: true
           }
         ]

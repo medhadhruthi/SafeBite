@@ -3,6 +3,7 @@ import Modal from '../common/Modal';
 import Stepper from '../common/Stepper';
 import PriceBreakdown from './PriceBreakdown';
 import { useCart } from '../../context/CartContext';
+import { formatINR } from '../../utils/currency';
 import { Trash2, ShieldAlert, ArrowRight, RotateCcw, ShoppingBag } from 'lucide-react';
 
 export default function CartDrawer({ isOpen, onClose, onProceedToCheckout }) {
@@ -21,7 +22,7 @@ export default function CartDrawer({ isOpen, onClose, onProceedToCheckout }) {
     clearCart
   } = useCart();
 
-  const [tipAmount, setTipAmount] = useState(3.00);
+  const [tipAmount, setTipAmount] = useState(30);
 
   if (!isOpen) return null;
 
@@ -109,7 +110,7 @@ export default function CartDrawer({ isOpen, onClose, onProceedToCheckout }) {
                     )}
                   </div>
                   <span className="text-base font-black text-emerald-700 dark:text-emerald-400">
-                    ${(cartItem.unitPrice * cartItem.quantity).toFixed(2)}
+                    {formatINR(cartItem.unitPrice * cartItem.quantity)}
                   </span>
                 </div>
 

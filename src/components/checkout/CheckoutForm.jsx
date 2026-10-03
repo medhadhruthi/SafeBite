@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '../common/Modal';
 import PriceBreakdown from '../cart/PriceBreakdown';
 import { useCart } from '../../context/CartContext';
+import { formatINR } from '../../utils/currency';
 import { ShieldCheck, MapPin, CreditCard, Truck, CheckCircle } from 'lucide-react';
 
 export default function CheckoutForm({ isOpen, onClose, onOrderPlacedSuccess }) {
@@ -10,7 +11,7 @@ export default function CheckoutForm({ isOpen, onClose, onOrderPlacedSuccess }) 
   const [address, setAddress] = useState('123 Accessibility Way, Apt 4B, Seattle, WA');
   const [deliveryNotes, setDeliveryNotes] = useState('Ramp available at front doorway. Please ring bell twice and leave package on porch table.');
   const [paymentMethod, setPaymentMethod] = useState('card');
-  const [tipAmount, setTipAmount] = useState(3.00);
+  const [tipAmount, setTipAmount] = useState(30);
 
   if (!isOpen) return null;
 
@@ -135,7 +136,7 @@ export default function CheckoutForm({ isOpen, onClose, onOrderPlacedSuccess }) 
             className="min-h-[52px] px-8 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-lg flex items-center gap-2 focus:ring-4 focus:ring-yellow-400 cursor-pointer shadow-lg"
           >
             <CheckCircle className="w-6 h-6" aria-hidden="true" />
-            <span>Confirm & Place Order (${(grandTotal + tipAmount).toFixed(2)})</span>
+            <span>Confirm & Place Order ({formatINR(grandTotal + tipAmount)})</span>
           </button>
         </div>
       </form>
